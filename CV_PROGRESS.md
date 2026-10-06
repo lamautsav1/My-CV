@@ -13,6 +13,8 @@ A single-page personal CV website for Utsav Lama, IT & Application Support Speci
 - Added email, phone, GitHub, project links, and a contact form that opens the visitor's email app.
 - Updated the title and summary to IT & Application Support Specialist, with experience phrased for corporate/main-branch IT and application support, branch/internal users, functional testing, UAT, and coordination with external developers.
 - Removed Age, linked Newmew and all three education institutions, added their phone links, and added Facebook/Instagram/WhatsApp placeholders.
+- Added the project-root PDF `cvs (1).pdf`; the navbar downloads it as `Utsav-Lama-CV.pdf`.
+- Replaced the social placeholders with the Facebook, Instagram, and WhatsApp details now in `CV.socials`.
 - Checked browser rendering and navigation at mobile and desktop widths; no horizontal overflow or file errors were found.
 
 ## Decisions and preferences
@@ -22,16 +24,14 @@ A single-page personal CV website for Utsav Lama, IT & Application Support Speci
 - The hero uses the initials "UL" rather than a GitHub identicon.
 
 ## In progress
-Nothing. The requested profile, experience, education, and contact updates are implemented and checked.
+Nothing. The CV PDF link and social details are now configured; no site edits are underway.
 
 ## Still to do
-- Place the real PDF at `./assets/CV.pdf` or change `CV.cvUrl` to its relative path; no PDF/assets directory currently exists.
-- Replace `FACEBOOK_URL`, `INSTAGRAM_URL`, and `WHATSAPP_NUMBER` in `CV.socials` with the real profile URLs and WhatsApp number.
 - The contact form uses `mailto:` and has no server-side submission.
-- Make any further changes the user requests when work resumes.
+- No required CV-site changes are currently pending.
 
 ## Exact stopping point
-The requested content updates are complete. Checks confirmed the old title and Age/customer-support wording are absent, the title/metadata and role summary are updated, all requested employer/school links render, social placeholders are disabled until configured, and Download CV points to `./assets/CV.pdf`. Desktop and refreshed mobile views have no horizontal overflow; GSAP/ScrollTrigger/Lenis and reduced-motion behavior remain intact. No unresolved file errors are known.
+The requested content updates are complete. The Download CV button resolves to `./cvs%20%281%29.pdf` and downloads as `Utsav-Lama-CV.pdf`. The old title and Age/customer-support wording are absent; employer, education, phone, and social links are configured. Desktop and refreshed mobile checks found no horizontal overflow; GSAP/ScrollTrigger/Lenis and reduced-motion behavior remain intact. Static checks found no file errors. The browser was reloaded on `index.html` and the download link was verified; its restored scroll position was not recorded.
 
 ## Important context
 - Workspace: `d:\Documents\MY CV`
@@ -39,10 +39,10 @@ The requested content updates are complete. Checks confirmed the old title and A
 - Profile details and all supplied contact links are in the `CV` object near the top of `index.html`.
 - The contact form relies on the visitor having an email app configured.
 - The project remains a standalone HTML file; CDN animations need an internet connection.
-- Social placeholders live under `CV.socials`; configured external links open in a new tab.
+- Social URLs and the WhatsApp number live under `CV.socials`; configured external links open in a new tab.
 
 ## Next logical step
-When returning, read this progress file and `index.html`, then continue with the next CV change the user requests. The main remaining setup is to supply the PDF and real social URLs/number.
+When returning, read this progress file and `index.html`, then continue with the next CV change the user requests. There are no known missing CV assets or social details.
 
 ## CONTINUE FROM HERE
 Read this progress file and `index.html`, understand the previous work and current state, then continue my CV work from exactly where we stopped. Do not redo completed work; ask what CV change I want next if it is not specified.
