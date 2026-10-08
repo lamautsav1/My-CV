@@ -752,12 +752,13 @@
       };
       const letterSpread = () => window.matchMedia('(max-width: 700px)').matches ? 5 : 12;
       const nameCenter = (filledLetters.length - 1) / 2;
-      // These positions use a 10-second scale, so 2.5, 5.5, and 8 mark 25%, 55%, and 80%.
+      const cinematicScrollDistance = window.matchMedia('(max-width: 700px)').matches ? 1.15 : 1.65;
+      // Keep the same cinematic effect, but compress the scroll travel to roughly a 2-second sequence.
       const cinematicTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: hero,
           start: () => `top top+=${document.querySelector('.site-header').offsetHeight}`,
-          end: () => `+=${window.innerHeight * (window.matchMedia('(max-width: 700px)').matches ? 1.7 : 3)}`,
+          end: () => `+=${window.innerHeight * cinematicScrollDistance}`,
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -766,25 +767,25 @@
       });
 
       cinematicTimeline
-        .to('.hero-inner', { opacity: 0, duration: .35 }, 0)
-        .to('.cinematic-scroll', { opacity: 0, y: 14, duration: .3 }, 1.55)
-        .to(filledName, { opacity: 0, duration: .65 }, 2.5)
-        .to(outlineName, { opacity: 1, duration: .65 }, 2.5)
-        .to(filledLetters, { x: (index) => (index - nameCenter) * letterSpread(), scale: 1.12, duration: .8, stagger: .025, ease: 'power2.inOut' }, 2.5)
-        .to(outlineLetters, { x: (index) => (index - nameCenter) * letterSpread(), scale: 1.12, duration: .8, stagger: .025, ease: 'power2.inOut' }, 2.5)
-        .to(cinematicRole, { y: -42, opacity: 0, duration: .55, ease: 'power2.in' }, 2.65)
-        .to('.cinematic-glow', { scale: 1.35, opacity: .9, duration: 1.2, ease: 'power1.out' }, 3.1)
-        .to(outlineLetters, { x: 0, scale: 1, duration: .65, stagger: .018, ease: 'power2.inOut' }, 5.5)
-        .to('.cinematic-name-wrap', { x: () => logoCenter().x, y: () => logoCenter().y, scale: .13, duration: 1.7, ease: 'power2.inOut' }, 5.8)
-        .to('.cinematic-wipe', { scale: 1, opacity: 1, duration: 2.8, ease: 'power1.inOut' }, 5.5)
-        .to(outlineName, { opacity: 0, duration: .35 }, 7.65)
-        .set('[data-cinematic-ul]', { xPercent: -50, yPercent: -50 }, 7.65)
-        .to('[data-cinematic-ul]', { x: () => logo.getBoundingClientRect().left + logo.offsetWidth / 2, y: () => logo.getBoundingClientRect().top + logo.offsetHeight / 2, opacity: 1, duration: .4 }, 7.65)
-        .to(logo, { opacity: 1, duration: .35 }, 7.8)
-        .to('.hero-inner', { opacity: 1, duration: 1.25, ease: 'power1.out' }, 7.6)
-        .to('.cinematic-glow', { opacity: 0, duration: .65 }, 8.9)
-        .to('.cinematic-wipe', { opacity: 0, duration: .8 }, 9.15)
-        .to('.hero-cinematic', { autoAlpha: 0, duration: .45 }, 9.55);
+        .to('.hero-inner', { opacity: 0, duration: .2 }, 0)
+        .to('.cinematic-scroll', { opacity: 0, y: 14, duration: .2 }, .45)
+        .to(filledName, { opacity: 0, duration: .35 }, .8)
+        .to(outlineName, { opacity: 1, duration: .35 }, .8)
+        .to(filledLetters, { x: (index) => (index - nameCenter) * letterSpread(), scale: 1.12, duration: .45, stagger: .018, ease: 'power2.inOut' }, .8)
+        .to(outlineLetters, { x: (index) => (index - nameCenter) * letterSpread(), scale: 1.12, duration: .45, stagger: .018, ease: 'power2.inOut' }, .8)
+        .to(cinematicRole, { y: -42, opacity: 0, duration: .3, ease: 'power2.in' }, .9)
+        .to('.cinematic-glow', { scale: 1.35, opacity: .9, duration: .55, ease: 'power1.out' }, 1.05)
+        .to(outlineLetters, { x: 0, scale: 1, duration: .3, stagger: .01, ease: 'power2.inOut' }, 1.45)
+        .to('.cinematic-name-wrap', { x: () => logoCenter().x, y: () => logoCenter().y, scale: .13, duration: .8, ease: 'power2.inOut' }, 1.5)
+        .to('.cinematic-wipe', { scale: 1, opacity: 1, duration: 1.1, ease: 'power1.inOut' }, 1.45)
+        .to(outlineName, { opacity: 0, duration: .2 }, 1.8)
+        .set('[data-cinematic-ul]', { xPercent: -50, yPercent: -50 }, 1.8)
+        .to('[data-cinematic-ul]', { x: () => logo.getBoundingClientRect().left + logo.offsetWidth / 2, y: () => logo.getBoundingClientRect().top + logo.offsetHeight / 2, opacity: 1, duration: .2 }, 1.8)
+        .to(logo, { opacity: 1, duration: .18 }, 1.85)
+        .to('.hero-inner', { opacity: 1, duration: .5, ease: 'power1.out' }, 1.7)
+        .to('.cinematic-glow', { opacity: 0, duration: .25 }, 1.9)
+        .to('.cinematic-wipe', { opacity: 0, duration: .35 }, 1.95)
+        .to('.hero-cinematic', { autoAlpha: 0, duration: .2 }, 1.95);
 
       const headingWords = gsap.utils.toArray('.section-heading .word-inner');
       gsap.set(headingWords, { yPercent: 115, opacity: 0 });
